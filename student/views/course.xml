@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <!-- Add form and tree views for the course -->
+        <record id="view_student_course_tree" model="ir.ui.view">
+            <field name="name">student.course.tree</field>
+            <field name="model">student.course</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="duration"/>
+                    <field name="fees"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_student_course_form" model="ir.ui.view">
+            <field name="name">student.course.form</field>
+            <field name="model">student.course</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                       <h3 class="text-center" style="font-size:20px;text-align:center">Course Details</h3>
+                                                <br/>
+                        <group style="width:50%;">
+                            <field name="name"/>
+                            <field name="duration"/>
+                            <field name="fees"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Define a new action for the course -->
+        <record model="ir.actions.act_window" id="course_action_window">
+            <field name="name">Courses</field>
+            <field name="res_model">student.course</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Courses" id="menu_course" parent="student_reg" action="course_action_window"/>
+
+   </data>
+</odoo>

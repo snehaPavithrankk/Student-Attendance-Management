@@ -1,0 +1,268 @@
+<!--<?xml version="1.0"?>-->
+<!--<odoo>-->
+<!--    <data>-->
+
+<!--        <record id="stud_tree" model="ir.ui.view">-->
+<!--            <field name="name">student_tree</field>-->
+<!--            <field name="model">student.registration</field>-->
+<!--            <field name="priority" eval="8" />-->
+<!--            <field name="arch" type="xml">-->
+<!--                    <tree string ='Student'>-->
+<!--                        &lt;!&ndash; <field name="seq"/> &ndash;&gt;-->
+<!--                        <field name="name"/>-->
+<!--                        <field name="gender"/>-->
+<!--                        <field name="contact_number"/>-->
+<!--                    </tree>-->
+<!--            </field>-->
+<!--    </record>-->
+
+<!--        &lt;!&ndash; Student Registration Form View &ndash;&gt;-->
+<!--        <record id="view_student_registration_form" model="ir.ui.view">-->
+<!--            <field name="name">student.registration.form</field>-->
+<!--            <field name="model">student.registration</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form>-->
+<!--                  <sheet>-->
+<!--                      <h3 class="text-center" style="font-size:20px;text-align:center">Student Application Form</h3>-->
+<!--                                                <br/>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="date_of_birth"/>-->
+<!--                            <field name="gender"/>-->
+<!--                            <field name="contact_number"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <label for="street1" string="Address"/>-->
+<!--                                        <div class="o_address_format">-->
+<!--                                            <field name="street1" id="street_page_lead" placeholder="Street..."-->
+<!--                                                   class="o_address_street"/>-->
+<!--                                            <field name="street2" placeholder="Street 2..." class="o_address_street"/>-->
+<!--                                            <field name="country" placeholder="Country" class="o_address_country"-->
+<!--                                                   options="{&quot;no_open&quot;: True}"/>-->
+<!--                                            <div class="o_row">-->
+<!--                                                <field name="city" placeholder="City" class="o_address_city"/>-->
+<!--                                                <field name="state" class="o_address_state" placeholder="State"-->
+<!--                                                       options="{&quot;no_open&quot;: True}"/>-->
+<!--                                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>-->
+<!--                                            </div>-->
+
+<!--                                        </div>-->
+<!--                            <field name="course_id"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                    <notebook>-->
+<!--                        <page string="Education History">-->
+<!--                            <field name="education_ids" widget="one2many_list">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="education"/>-->
+<!--                                    <field name="university"/>-->
+<!--                                    <field name="year_of_passing"/>-->
+<!--                                    <field name="attachment_ids" widget="many2many_binary" options="{'no_create': True}" string="Attachments"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                    </notebook>-->
+<!--                    <footer>-->
+<!--                        <button string="Save" type="object" class="oe_highlight"/>-->
+<!--                        <button string="Cancel" class="oe_link"/>-->
+<!--                    </footer>-->
+<!--                  </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--              <record model="ir.actions.act_window" id="student_action_window">-->
+<!--                  <field name="name">Student</field>-->
+<!--                  <field name="res_model">student.registration</field>-->
+<!--                  <field name="view_mode">tree,form</field>-->
+<!--              </record>-->
+
+<!--        <menuitem name="Student Register" id="menu_root"/>-->
+<!--     <menuitem name="Application" id="student_menu" parent="menu_root" action="student_action_window"/>-->
+
+<!--    </data>-->
+<!--</odoo>-->
+
+
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="student_registration">
+            <field name="name">student Registration</field>
+            <field name="model">student.registration</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="firstName"/>
+                    <field name="street1_p"/>
+                    <field name="street2_p"/>
+                    <field name="mobile"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="student_form">
+            <field name="name">student Registration</field>
+            <field name="model">student.registration</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_report_print_booking" string="Print" type="object" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                       <h3 class="text-center" style="font-size:20px;text-align:center">Student Application Form</h3>
+                                                <br/>
+                        <group string=" Personal Information">
+                            <group>
+<!--                                <field name="name"/>-->
+                                <field name="firstName" placeholder="First name"/>
+                                <field name="middleName" placeholder="Middle Name"/>
+                                <field name="lastName" placeholder="Last Name"/>
+                                <field name="gender" placeholder="Gender"/>
+                                <field name="birthDate" placeholder="BirthDate"/>
+<!--                                <field name="age" placeholder="age"/>-->
+                                <field name="maritalStatus"/>
+                            </group>
+                            <group >
+                                <field name="image" widget='image'  class="oe_person_avatar oe_left" style="max-width: 160px; ;max-height:160px"/>
+                            </group>
+                        </group>
+                         <group>
+                             <group>
+                                <field name="motherTongue" placeholder="MotherTongue"/>
+                                <field name="nationality" placeholder="Nationality"/>
+                                <field name="phone" placeholder="Phone"/>
+                             </group>
+                             <group>
+                                <field name="mobile" placeholder="Mobile"/>
+                                <field name="email" placeholder="Email"/>
+                                <field name="course_id"/>
+                             </group>
+                         </group>
+                          <group string="Parent details">
+                              <group>
+                                <field name="father" placeholder="Father's name"/>
+                                <field name="father_qualification" placeholder="Father's Qualification"/>
+                                <field name="father_job" placeholder="Father's Job"/>
+                                <field name="father_no" placeholder="Father's Mob No"/>
+
+                            </group>
+                            <group>
+                                <field name="mother" placeholder="Mother's name"/>
+                                <field name="mother_qualification" placeholder="Mother's Qualification"/>
+                                <field name="mother_job" placeholder="Mother's Job"/>
+                                <field name="mother_no" placeholder="Mother's Mob No"/>
+                            </group>
+                        </group>
+
+
+                        <group string="Address Information">
+                            <group>
+                                <label for="street_page_lead" string="Permanent Address"/>
+                                <div class="o_address_format">
+                                    <field name="street1_p" id="street_page_lead" placeholder="Street..."
+                                           class="o_address_street"/>
+                                    <field name="street2_p" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="country_p" placeholder="Country" class="o_address_country"
+                                           options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                                    <div class="o_row">
+                                        <field name="city_p" placeholder="City" class="o_address_city"/>
+                                        <field name="state_p" class="o_address_zip" placeholder="State"
+                                               options="{&quot;no_open&quot;: True}"/>
+                                        <field name="zip_p" placeholder="ZIP" class="o_address_zip"/>
+                                    </div>
+
+                                </div>
+                            </group>
+                            <group>
+                                <label for="street_page_lead" string="Present Address"/>
+                                <div class="o_address_format">
+                                    <field name="street1_c" id="street_page_lead" placeholder="Street..."
+                                           class="o_address_street"/>
+                                    <field name="street2_c" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="country_c" placeholder="Country" class="o_address_country"
+                                           options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                                    <div class="o_row">
+                                        <field name="city_c" placeholder="City" class="o_address_city"/>
+                                        <field name="state_c" class="o_address_zip" placeholder="State"
+                                               options="{&quot;no_open&quot;: True}"/>
+                                        <field name="zip_c" placeholder="ZIP" class="o_address_zip"/>
+                                    </div>
+
+                                </div>
+                            </group>
+
+                        </group>
+<!--                        <group string="Academic Details">-->
+<!--                            <group>-->
+<!--                                <field name="ugc_degree" placeholder="Degree"/>-->
+<!--                                <field name="ugc_institute" placeholder="Institute"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="year_of_passed" placeholder="Year Of Passed"/>-->
+<!--                                <field name="cgpa_obtained" placeholder="CGPA"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+                        <group>
+                            <group string="Additional Information">
+
+                                <field name="category" placeholder="SC/ST/OEC/OBC"/>
+                                <field name="religion" placeholder="religion"/>
+                                <field name="cast" placeholder="cast"/>
+                                <field name="disability" placeholder="disability"/>
+                            </group>
+
+                            <group string="Emergency Contact Details">
+
+                                <field name="guardian" placeholder="Name of Guardian"/>
+                                <field name="relationship" placeholder="Relationship"/>
+                                <field name="emergencyContact" placeholder="Phone Number"/>
+                                <field name="emergencyMob" placeholder="Mobile Number"/>
+
+                            </group>
+
+                        </group>
+<!--                        <group string="Documents Upload">-->
+<!--                            <field name="attachment_ids" widget="many2many_binary" options="{'no_create': True}"-->
+<!--                                   string="Certificates"/>-->
+
+<!--                        </group>-->
+
+                         <notebook>
+                            <page string="Education History">
+                                <field name="education_ids" widget="one2many_list">
+                                    <tree editable="bottom">
+                                        <field name="education"/>
+                                        <field name="ugc_institute"/>
+                                        <field name="university"/>
+                                        <field name="year_of_passing"/>
+                                        <field name="cgpa_obtained"/>
+                                        <field name="attachment_ids" widget="many2many_binary" options="{'no_create': True}" string="Attachments"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="student1_action">
+            <field name="name">Registration</field>
+            <field name="res_model">student.registration</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Student" id="student_reg"/>
+        <menuitem name="Registration" id="student_reg1" parent="student_reg"
+                  action="student1_action"/>
+
+
+   </data>
+</odoo>

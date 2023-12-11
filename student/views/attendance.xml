@@ -1,0 +1,47 @@
+<!-- student_attendance_view.xml -->
+
+<odoo>
+    <data>
+        <!-- Student Attendance Model -->
+        <record id="view_student_attendance_form" model="ir.ui.view">
+            <field name="name">student.attendance.form</field>
+            <field name="model">student.attendance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="student_name"/>
+                            <field name="check_in_time"/>
+                            <field name="check_out_time"/>
+                            <field name="worked_hours" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Student Attendance Tree View -->
+        <record id="view_student_attendance_tree" model="ir.ui.view">
+            <field name="name">student.attendance.tree</field>
+            <field name="model">student.attendance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="student_name"/>
+                    <field name="check_in_time"/>
+                    <field name="check_out_time"/>
+                    <field name="worked_hours"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Student Attendance Action -->
+        <record id="action_student_attendance" model="ir.actions.act_window">
+            <field name="name">Student Attendance</field>
+            <field name="res_model">student.attendance</field>
+            <field name="view_mode">tree,kanban</field>
+        </record>
+
+        <!-- Student Menu Entry -->
+        <menuitem id="menu_student_attendance" name="Student Attendance" parent="student_reg" action="action_student_attendance"/>
+   </data>
+</odoo>

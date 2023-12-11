@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record id="view_student_attendance_tree" model="ir.ui.view">
+            <field name="name">student.attendance.tree</field>
+            <field name="model">student.attendance.record</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="student_id"/>
+                    <field name="checkin_time"/>
+                    <field name="checkout_time"/>
+                    <field name="work_hours"/>
+                     <field name="date" widget="date" options='{"datepicker": {"minDate": "today", "maxDate": "today"}}'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_student_attendance" model="ir.actions.act_window">
+            <field name="name">Student Attendance</field>
+            <field name="res_model">student.attendance.record</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'search_default_today': 1}</field>
+</record>
+
+
+        <menuitem id="menu_student_attendance" name="Student Attendance" parent="student_reg" action="action_student_attendance"/>
+   </data>
+</odoo>

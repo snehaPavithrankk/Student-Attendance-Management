@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+
+        <record id="view_checkinout_wizard_form" model="ir.ui.view">
+            <field name="name">checkinout_wizard_form</field>
+            <field name="model">student.attendance</field>
+            <field name="arch" type="xml" >
+                <form class="screen">
+
+                   <div class="module-container">
+                        <div class="checkinout-module">
+                            <group>
+                                <field name="student_id" class="smaller-field" nocreate="1"/> <br></br>
+                                <field name="current_status" readonly="1" nolabel="1" class="custom_text"/>
+                                <field name="show_check_in_button" invisible="1"/>
+                                <field name="show_check_out_button" invisible="1"/>
+                                <footer>
+                                    <button string="Check In" class="icon1 fa fa-sign-in login-button" type="object" name="action_checkin"
+                                            attrs="{'invisible': [('show_check_in_button', '=', False)]}" />
+                                    <button string="Check Out" class="icon fa fa-sign-out login-button" type="object" name="action_checkout" attrs="{'invisible': [('show_check_out_button', '=', False)]}" />
+                                </footer>
+                            </group>
+                        </div>
+                        </div>
+                     <table>
+
+                                <!-- Table headers -->
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Attendance Status</th>
+                                        <!-- Add more columns as needed -->
+                                    </tr>
+                                </thead>
+                                <!-- Table body with dynamic data -->
+                                <tbody>
+                                    <!-- Use a loop to iterate through attendance records and populate rows -->
+                                    <t t-foreach="records" t-as="record">
+                                        <tr>
+                                            <td><t t-esc="record.date"/></td>
+                                            <td><t t-esc="record.attendance_status"/></td>
+                                            <!-- Add more columns with data -->
+                                        </tr>
+                                    </t>
+                                </tbody>
+                     </table>
+
+                </form>
+            </field>
+        </record>
+
+        <!-- Wizard Action -->
+        <record id="action_checkinout_stud" model="ir.actions.act_window">
+            <field name="name">Check In/Out</field>
+            <field name="res_model">student.attendance</field>
+            <field name="view_mode">form</field>
+        </record>
+
+        <!-- Menu Item for Check In/Out -->
+        <menuitem name="Check In/Out" id="menu_checkinout" parent="student_reg" action="action_checkinout_stud"/>
+ </data>
+</odoo>
